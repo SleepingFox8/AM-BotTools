@@ -35,19 +35,20 @@
         lookAt(FUNC.x+0.5, FUNC.y+0.5, FUNC.z+0.5)
     end
 
-    function botTools.lookTowards(x,z)
+    function botTools.lookTowards(x,z, pitch)
         --function initialization
             --initialize function table
                 local FUNC = {}
             --store arguments in locally scoped table for scope safety
                 FUNC.x = x
                 FUNC.z = z
-
-        FUNC.pX, FUNC.pY, FUNC.pZ = getPlayerPos()
-
-        botTools.lookAtCenter(FUNC.x,FUNC.pY+1,FUNC.z)
-        FUNC.player = getPlayer()
-        look(FUNC.player.yaw, 0)
+                FUNC.pitch = pitch or 0
+        -- look towards target
+            FUNC.pX, FUNC.pY, FUNC.pZ = getPlayerPos()
+            botTools.lookAtCenter(FUNC.x,FUNC.pY+1,FUNC.z)
+        -- look at specified pitch
+            FUNC.player = getPlayer()
+            look(FUNC.player.yaw, FUNC.pitch)
     end
 
     function botTools.summonItem(sitem, prefSlot, minDura)
