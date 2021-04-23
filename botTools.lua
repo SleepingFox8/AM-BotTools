@@ -1,6 +1,6 @@
 --initialization
     -- import dependencies
-        local compTools = require ("compTools")
+        local compTools = require ("./AM-CompTools/compTools")
     -- create libraries to fill
         local botTools = { _version = "1.0.1" }
         
