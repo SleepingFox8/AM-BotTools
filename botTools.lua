@@ -1,6 +1,13 @@
 --initialization
+    -- ensure imports are from file instead of cache
+        local function import(path)
+            package.loaded[path] = nil
+            local imported = require (path)
+            package.loaded[path] = nil
+            return imported
+        end
     -- import dependencies
-        local compTools = require ("./AM-CompTools/compTools")
+        local compTools = import("./AM-CompTools/compTools")
     -- create libraries to fill
         local botTools = { _version = "1.0.1" }
         
