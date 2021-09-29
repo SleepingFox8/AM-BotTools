@@ -324,6 +324,7 @@
 
             -- sneak towards point
                 botTools.initializeJumpIfSlowerThan()
+                compTools.setTimer("sneakToPoint_jump_delay", 300)
                 while(compTools.playerhorizontalSquareDistanceBetween(FUNC.x + 0.5, FUNC.z + 0.5) > FUNC.arrivedDistance or compTools.playerVerticalSquareDistanceBetween(FUNC.y) > 10)do
                     botTools.eatIfHungry()
                     botTools.lookTowards(FUNC.x,FUNC.z)
@@ -331,7 +332,7 @@
                     sneak(-1)
                     forward(-1)
                     sleep(50)
-                    if FUNC.shouldJump then
+                    if FUNC.shouldJump and not compTools.haveTime("sneakToPoint_jump_delay") then
                         botTools.jumpIfSlowerThan(SCRIPT.sneakingSpeed)
                     end
                 end
