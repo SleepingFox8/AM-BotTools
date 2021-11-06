@@ -158,6 +158,47 @@
             end
     end
 
+    -- generate list of food
+        SCRIPT.listOfFood = {}
+        -- cooked
+            table.insert(SCRIPT.listOfFood, "minecraft:apple")
+            table.insert(SCRIPT.listOfFood, "minecraft:mushroom_stew")
+            table.insert(SCRIPT.listOfFood, "minecraft:bread")
+            table.insert(SCRIPT.listOfFood, "minecraft:cooked_porkchop")
+            table.insert(SCRIPT.listOfFood, "minecraft:cooked_cod")
+            table.insert(SCRIPT.listOfFood, "minecraft:cooked_salmon")
+            table.insert(SCRIPT.listOfFood, "minecraft:cookie")
+            table.insert(SCRIPT.listOfFood, "minecraft:melon_slice")
+            table.insert(SCRIPT.listOfFood, "minecraft:cooked_beef")
+            table.insert(SCRIPT.listOfFood, "minecraft:cooked_chicken")
+            table.insert(SCRIPT.listOfFood, "minecraft:carrot")
+            table.insert(SCRIPT.listOfFood, "minecraft:baked_potato")
+            table.insert(SCRIPT.listOfFood, "minecraft:pumpkin_pie")
+            table.insert(SCRIPT.listOfFood, "minecraft:cooked_rabbit")
+            table.insert(SCRIPT.listOfFood, "minecraft:rabbit_stew")
+            table.insert(SCRIPT.listOfFood, "minecraft:cooked_mutton")
+            table.insert(SCRIPT.listOfFood, "minecraft:beetroot_soup")
+            table.insert(SCRIPT.listOfFood, "minecraft:sweet_berries")
+        -- raw
+            table.insert(SCRIPT.listOfFood, "minecraft:porkchop")
+            table.insert(SCRIPT.listOfFood, "minecraft:cod")
+            table.insert(SCRIPT.listOfFood, "minecraft:salmon")
+            table.insert(SCRIPT.listOfFood, "minecraft:tropical_fish")
+            table.insert(SCRIPT.listOfFood, "minecraft:beef")
+            table.insert(SCRIPT.listOfFood, "minecraft:chicken")
+            table.insert(SCRIPT.listOfFood, "minecraft:potato")
+            table.insert(SCRIPT.listOfFood, "minecraft:rabbit")
+            table.insert(SCRIPT.listOfFood, "minecraft:mutton")
+            table.insert(SCRIPT.listOfFood, "minecraft:beetroot")
+        -- food the bot doesnt eat
+            -- table.insert(SCRIPT.listOfFood, "minecraft:golden_apple")
+            -- table.insert(SCRIPT.listOfFood, "minecraft:enchanted_golden_apple")
+            -- table.insert(SCRIPT.listOfFood, "minecraft:pufferfish")
+            -- table.insert(SCRIPT.listOfFood, "minecraft:dried_kelp")
+            -- table.insert(SCRIPT.listOfFood, "minecraft:rotten_flesh")
+            -- table.insert(SCRIPT.listOfFood, "minecraft:spider_eye")
+            -- table.insert(SCRIPT.listOfFood, "minecraft:poisonous_potato")
+
     function botTools.eatIfHungry()
         --function initialization
             --initialize function table
@@ -165,54 +206,18 @@
 
         --declare local function variables
             FUNC.player = getPlayer()
-            FUNC.minfood = 12
-            -- declare list of foods
-                FUNC.listOfFood = {}
-                -- cooked
-                    table.insert(FUNC.listOfFood, "minecraft:apple")
-                    table.insert(FUNC.listOfFood, "minecraft:mushroom_stew")
-                    table.insert(FUNC.listOfFood, "minecraft:bread")
-                    table.insert(FUNC.listOfFood, "minecraft:cooked_porkchop")
-                    table.insert(FUNC.listOfFood, "minecraft:cooked_cod")
-                    table.insert(FUNC.listOfFood, "minecraft:cooked_salmon")
-                    table.insert(FUNC.listOfFood, "minecraft:cookie")
-                    table.insert(FUNC.listOfFood, "minecraft:melon_slice")
-                    table.insert(FUNC.listOfFood, "minecraft:cooked_beef")
-                    table.insert(FUNC.listOfFood, "minecraft:cooked_chicken")
-                    table.insert(FUNC.listOfFood, "minecraft:carrot")
-                    table.insert(FUNC.listOfFood, "minecraft:baked_potato")
-                    table.insert(FUNC.listOfFood, "minecraft:pumpkin_pie")
-                    table.insert(FUNC.listOfFood, "minecraft:cooked_rabbit")
-                    table.insert(FUNC.listOfFood, "minecraft:rabbit_stew")
-                    table.insert(FUNC.listOfFood, "minecraft:cooked_mutton")
-                    table.insert(FUNC.listOfFood, "minecraft:beetroot_soup")
-                    table.insert(FUNC.listOfFood, "minecraft:sweet_berries")
-                -- raw
-                    table.insert(FUNC.listOfFood, "minecraft:porkchop")
-                    table.insert(FUNC.listOfFood, "minecraft:cod")
-                    table.insert(FUNC.listOfFood, "minecraft:salmon")
-                    table.insert(FUNC.listOfFood, "minecraft:tropical_fish")
-                    table.insert(FUNC.listOfFood, "minecraft:beef")
-                    table.insert(FUNC.listOfFood, "minecraft:chicken")
-                    table.insert(FUNC.listOfFood, "minecraft:potato")
-                    table.insert(FUNC.listOfFood, "minecraft:rabbit")
-                    table.insert(FUNC.listOfFood, "minecraft:mutton")
-                    table.insert(FUNC.listOfFood, "minecraft:beetroot")
-                -- food the bot doesnt eat
-                    -- table.insert(FUNC.listOfFood, "minecraft:golden_apple")
-                    -- table.insert(FUNC.listOfFood, "minecraft:enchanted_golden_apple")
-                    -- table.insert(FUNC.listOfFood, "minecraft:pufferfish")
-                    -- table.insert(FUNC.listOfFood, "minecraft:dried_kelp")
-                    -- table.insert(FUNC.listOfFood, "minecraft:rotten_flesh")
-                    -- table.insert(FUNC.listOfFood, "minecraft:spider_eye")
-                    -- table.insert(FUNC.listOfFood, "minecraft:poisonous_potato")
+            if getPlayer().health < 20 then
+                FUNC.minfood = 18
+            else
+                FUNC.minfood = 12
+            end
 
         -- exit function if not hungry
             if FUNC.player.hunger >= FUNC.minfood then
                 return true
             end
         -- eat foods until full
-            for i,j in pairs(FUNC.listOfFood) do
+            for i,j in pairs(SCRIPT.listOfFood) do
                 -- store args in known scope safe table
                     FUNC.food = j
 
